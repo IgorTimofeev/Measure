@@ -168,13 +168,13 @@ public class WallHackRenderer {
                         // Рендерим вектор взгляда хуйни
                         glDisable(GL_TEXTURE_2D);
                         glPushMatrix();
-                        glRotated(-entityLiving.rotationYawHead - 90, 0, 1, 0);
-                        glLineWidth(LOOK_VECTOR_WIDTH);
-                        glBegin(GL_LINES);
-                        glColor4f(LOOK_VECTOR_COLOR.r, LOOK_VECTOR_COLOR.g, LOOK_VECTOR_COLOR.b, LOOK_VECTOR_COLOR.a);
-                        glVertex3d(0, entityLiving.height / 2, 0);
-                        glVertex3d(LOOK_VECTOR_LENGTH, entityLiving.height / 2, 0);
-                        glEnd();
+                            glRotated(-entityLiving.rotationYawHead - 90, 0, 1, 0);
+                            glLineWidth(LOOK_VECTOR_WIDTH);
+                            glBegin(GL_LINES);
+                                glColor4d(LOOK_VECTOR_COLOR.r, LOOK_VECTOR_COLOR.g, LOOK_VECTOR_COLOR.b, LOOK_VECTOR_COLOR.a);
+                                glVertex3d(0, entityLiving.height / 2, 0);
+                                glVertex3d(LOOK_VECTOR_LENGTH, entityLiving.height / 2, 0);
+                            glEnd();
                         glPopMatrix();
                         glEnable(GL_TEXTURE_2D);
                     }

@@ -5,9 +5,11 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 
 public class SoundHandler {
-    public static final SoundEvent PIN_PLACED = register("pinplaced");
+    public static final SoundEvent
+        PIN_PLACED = register("pinplaced"),
+        PIN_CLEARED = register("pincleared");
     
-    public static SoundEvent register(String name) {
+    private static SoundEvent register(String name) {
         final ResourceLocation resourceLocation = new ResourceLocation(Measure.MODID, name);
         return new SoundEvent(resourceLocation).setRegistryName(resourceLocation);
     }

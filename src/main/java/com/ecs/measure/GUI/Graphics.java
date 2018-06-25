@@ -1,5 +1,5 @@
 package com.ecs.measure.GUI;
-import com.ecs.measure.Measure;
+import net.minecraft.client.Minecraft;
 
 import static org.lwjgl.opengl.GL11.*;
 
@@ -8,7 +8,7 @@ public class Graphics {
         glDisable(GL_TEXTURE_2D);
         glEnable(GL_BLEND);
         glBegin(GL_QUADS);
-            glColor4f(color.r, color.g, color.b, color.a);
+            glColor4d(color.r, color.g, color.b, color.a);
             glVertex2i(x, y);
             glVertex2i(x, y + height);
             glVertex2i(x + width, y + height);
@@ -24,7 +24,7 @@ public class Graphics {
         glPushMatrix();
             glDisable(GL_TEXTURE_2D);
             glEnable(GL_BLEND);
-            glColor4f(color.r, color.g, color.b, color.a);
+            glColor4d(color.r, color.g, color.b, color.a);
             glBegin(GL_TRIANGLE_FAN);
                 for (int i = 0; i < segments; i++) {
                     glVertex2d(centerX + x, centerY + y);
@@ -39,7 +39,7 @@ public class Graphics {
     
     public static void drawText(int x, int y, Color color, String text, boolean dropShadow) {
         glEnable(GL_TEXTURE_2D);
-        glColor4f(color.r, color.g, color.b, color.a);
-        Measure.minecraft.fontRenderer.drawString(text, x, y, 0xFFFFFF, dropShadow);
+        glColor4d(color.r, color.g, color.b, color.a);
+        Minecraft.getMinecraft().fontRenderer.drawString(text, x, y, 0xFFFFFF, dropShadow);
     }
 }

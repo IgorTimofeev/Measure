@@ -58,6 +58,11 @@ public class MeasureRenderer {
         }
     }
     
+    public static void clearPins() {
+        pins.clear();
+        Measure.minecraft.player.playSound(SoundHandler.PIN_CLEARED, 1, 1);
+    }
+    
     public static void addLookingAt() {
         RayTraceResult rayTraceResult = Measure.minecraft.player.rayTrace(RAY_TRACE_LENGTH, partialTicks);
         if (rayTraceResult != null && rayTraceResult.hitVec.distanceTo(Measure.minecraft.player.getPositionVector()) < RAY_TRACE_LENGTH) {
@@ -143,7 +148,7 @@ public class MeasureRenderer {
                 
                 if (renderPolygon) {
                     glBegin(GL_POLYGON);
-                    glColor4f(PIN_POLYGON_COLOR.r, PIN_POLYGON_COLOR.g, PIN_POLYGON_COLOR.b, PIN_POLYGON_COLOR.a);
+                    glColor4d(PIN_POLYGON_COLOR.r, PIN_POLYGON_COLOR.g, PIN_POLYGON_COLOR.b, PIN_POLYGON_COLOR.a);
                     for (int i = 0; i < pins.size(); i++) {
                         Pin pin = pins.get(i);
                         glVertex3d(pin.hit.x, pin.hit.y, pin.hit.z);

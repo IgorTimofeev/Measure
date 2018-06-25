@@ -51,7 +51,7 @@ public class Slider extends Object {
         
         Graphics.drawRectangle(screenX, trackY, pipeLeft, trackHeight, primaryColor);
         Graphics.drawRectangle(screenX + pipeLeft, trackY, width - pipeLeft, trackHeight, secondaryColor);
-        Graphics.drawCircle(screenX + pipeLeft, trackY + halfTrackHeight, pipeRadius, 16, pipeColor);
+        Graphics.drawCircle(screenX + pipeLeft, trackY + halfTrackHeight, hovered ? pipeRadius + 1 : pipeRadius, 16, pipeColor);
         
         if (showValue) {
             String text = prefix + (roundValue ? (int) Math.round(value) : String.format("%.2f:", value)) + postfix;

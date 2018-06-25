@@ -10,7 +10,7 @@ public class WorldRenderer {
         // Regular lines
         glLineWidth(width);
         glBegin(GL_LINE_STRIP);
-            glColor4f(color.r, color.g, color.b, color.a);
+            glColor4d(color.r, color.g, color.b, color.a);
     
             // Regular Line Front
             glVertex3d(x1, y1, z1);
@@ -43,7 +43,7 @@ public class WorldRenderer {
     static void renderBoxHelperLines(double x1, double y1, double z1, double x2, double y2, double z2, double stepPercent, float width, Color color) {
         // Helper lines
         glLineWidth(width);
-        glColor4f(color.r, color.g, color.b, color.a);
+        glColor4d(color.r, color.g, color.b, color.a);
         
         // Vertical
         // Front and back
@@ -105,7 +105,7 @@ public class WorldRenderer {
     static void renderBox(double x1, double y1, double z1, double x2, double y2, double z2, Color color) {
         // Background
         glBegin(GL_QUADS);
-        glColor4f(color.r, color.g, color.b, color.a);
+        glColor4d(color.r, color.g, color.b, color.a);
 
         // Background Front
         glVertex3d(x1, y1, z1);

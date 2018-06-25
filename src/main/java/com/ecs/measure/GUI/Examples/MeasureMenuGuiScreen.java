@@ -7,6 +7,8 @@ import com.ecs.measure.GUI.Objects.Button;
 import com.ecs.measure.GUI.Objects.FittedPanel;
 import com.ecs.measure.GUI.Screen;
 import com.ecs.measure.GUI.Objects.Slider;
+import com.ecs.measure.Measure;
+import com.ecs.measure.Renderers.MeasureRenderer;
 import net.minecraft.util.text.TextComponentTranslation;
 
 import static com.ecs.measure.Renderers.MeasureRenderer.*;
@@ -51,7 +53,7 @@ public class MeasureMenuGuiScreen extends Screen {
         container.addChild(fittedLayout);
 
         addButton(fittedLayout, "clearPins", false, false, () -> {
-            pins.clear();
+            MeasureRenderer.clearPins();
         });
 
         addButton(fittedLayout, "snapToBlocks", snapToBlocks, true, () -> {
@@ -74,7 +76,7 @@ public class MeasureMenuGuiScreen extends Screen {
             renderPolygon = !renderPolygon;
         });
 
-        Slider slider = new Slider(1, 1, objectWidth, 3, 4, 4, 0, 100, 30, Color.RED, Color.BLACK, Color.WHITE, Color.WHITE, "Gleb pidor na ", "%");
+        Slider slider = new Slider(1, 1, objectWidth, 2, 4, 3, 0, 100, 30, Color.RED, Color.BLACK, Color.WHITE, Color.WHITE, "Gleb pidor na ", "%");
         slider.onValueChanged = () -> {
             float value = (float) slider.value / (float) (slider.maximumValue - slider.minimumValue);
             slider.valueColor = new Color(value, value, value, 1);

@@ -1,0 +1,20 @@
+{
+  "pinplaced": {
+    "category": "player",
+    "sounds": [
+      {
+        "name": "measure:pinplaced",
+        "stream": true
+      }
+    ]
+  },
+  "pincleared": {
+    "category": "player",
+    "sounds": [
+      {
+        "name": "measure:pincleared",
+        "stream": true
+      }
+    ]
+  }
+}
