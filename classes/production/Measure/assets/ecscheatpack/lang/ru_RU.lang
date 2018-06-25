@@ -1,0 +1,13 @@
+keybinding.wallhack.category=Опции Measure
+keybinding.wallhack.addPin=Добавить маркер
+keybinding.wallhack.openMenu=Открыть меню
+distance=Дистанция: 
+hp=Здоровье: 
+clearPins=Очистить маркеры
+snapToBlocks=Привязка к блокам
+renderDistance=Отрисовка дистанции
+renderBlocks=Отрисовка рамки блоков
+renderPolygon=Отрисовка поверхности
+autoPin=Авто-маркер
+wallhackToggle=Включить валлхак
+moveDistance=Движение метки дистации
