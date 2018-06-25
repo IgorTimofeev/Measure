@@ -1,6 +1,6 @@
 [
   {
-    "modid": "algocat",
+    "modid": "measure",
     "name": "Algorithmic cat",
     "description": "Example placeholder mod.",
     "version": "${version}",
