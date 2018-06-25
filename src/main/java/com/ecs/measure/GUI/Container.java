@@ -1,6 +1,5 @@
-package com.ecs.measure.GUI.Containers;
+package com.ecs.measure.GUI;
 
-import com.ecs.measure.GUI.Objects.Object;
 import net.minecraft.client.Minecraft;
 
 import java.util.ArrayList;
@@ -45,6 +44,10 @@ public class Container extends Object {
             
             if (!child.hidden) {
                 if (child.animation != null) {
+                    if (child.animation.startTime < 0) {
+                        child.animation.startTime = Minecraft.getSystemTime();
+                    }
+                    
                     float position = (float) (Minecraft.getSystemTime() - child.animation.startTime) / (float) child.animation.duration;
                     if (position > 1) {
                         child.animation.frameHandler.run(1);
@@ -63,10 +66,10 @@ public class Container extends Object {
     }
 
     @Override
-    public void draw(int mouseX, int mouseY, float partialTicks) {
+    public void draw() {
         for (Object child : children) {
             if (!child.hidden) {
-                child.draw(mouseX, mouseY, partialTicks);
+                child.draw();
             }
         }
     }

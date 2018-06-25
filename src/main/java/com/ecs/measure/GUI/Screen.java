@@ -1,8 +1,6 @@
 package com.ecs.measure.GUI;
 
 import com.ecs.measure.Measure;
-import com.ecs.measure.GUI.Containers.Container;
-import com.ecs.measure.GUI.Objects.Object;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.ScaledResolution;
 import org.lwjgl.input.Mouse;
@@ -18,8 +16,8 @@ public class Screen extends GuiScreen {
         @Override
         public void update() {
             ScaledResolution scaledResolution = new ScaledResolution(Measure.minecraft);
-            width = scaledResolution.getScaledWidth() + 1;
-            height = scaledResolution.getScaledHeight() + 1;
+            width = scaledResolution.getScaledWidth();
+            height = scaledResolution.getScaledHeight();
             
             super.update();
         }
@@ -40,7 +38,12 @@ public class Screen extends GuiScreen {
             else {
                 if (!child.hidden && !child.disabled) {
                     child.hovered = child.isPointInside(mouseX, mouseY);
-                    child.onMouseEvent.run(mouseX, mouseY);
+                    
+                    if (child.onMouseEvent != null)
+                        child.onMouseEvent.run(mouseX, mouseY);
+                }
+                else {
+                    child.hovered = false;
                 }
             }
         }
@@ -54,17 +57,16 @@ public class Screen extends GuiScreen {
     @Override
     public void handleMouseInput() {
         int scaleFactor = new ScaledResolution(Measure.minecraft).getScaleFactor();
-        handleMouse(container,Mouse.getEventX() / scaleFactor, (Measure.minecraft.displayHeight - Mouse.getEventY() - 2) / scaleFactor);
+        handleMouse(
+            container,
+            Mouse.getEventX() / scaleFactor,
+            (Measure.minecraft.displayHeight - Mouse.getEventY() - 3) / scaleFactor
+        );
     }
 
     @Override
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
         container.update();
-        container.draw(mouseX, mouseY, partialTicks);
-    }
-    
-    public void show() {
-        container.update();
-        Measure.minecraft.displayGuiScreen(this);
+        container.draw();
     }
 }

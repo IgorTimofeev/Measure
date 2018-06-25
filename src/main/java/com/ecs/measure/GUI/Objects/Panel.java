@@ -2,6 +2,7 @@ package com.ecs.measure.GUI.Objects;
 
 import com.ecs.measure.GUI.Graphics;
 import com.ecs.measure.GUI.Color;
+import com.ecs.measure.GUI.Object;
 
 public class Panel extends Object {
     public Color color;
@@ -12,7 +13,7 @@ public class Panel extends Object {
     }
 
     @Override
-    public void draw(int mouseX, int mouseY, float partialTicks) {
+    public void draw() {
         Graphics.drawRectangle(screenX, screenY, width, height, color);
     }
 }

@@ -1,6 +1,7 @@
 package com.ecs.measure.GUI.Containers;
 
-import com.ecs.measure.GUI.Objects.Object;
+import com.ecs.measure.GUI.Container;
+import com.ecs.measure.GUI.Object;
 
 public class Layout extends Container {
     public int spacing = 4;
@@ -17,25 +18,17 @@ public class Layout extends Container {
                 totalHeight += child.height + spacing;
             }
         }
-        totalHeight -= spacing - 50;
-        
-        int totalWidth = 0;
-        for (Object child : children) {
-            if (!child.hidden) {
-                totalWidth = Math.max(totalWidth, child.width);
-            }
-        }
-        
-        int x = this.x + this.width / 2 - totalWidth / 2;
-        int y = this.y + this.height / 2 - totalHeight / 2;
+        totalHeight -= spacing;
 
-//        System.out.println("height = " + height + ", y = " + y + ", totalHegiht = " + totalHeight);
+        int y = this.y + this.height / 2 - totalHeight / 2;
         
         for (Object child : children) {
             if (!child.hidden) {
-                child.x = x;
-                child.y = y += child.height + spacing;
+                child.x = this.width / 2 - child.width / 2;
+                child.y = y;
             }
+            
+            y += child.height + spacing;
         }
 
         super.update();

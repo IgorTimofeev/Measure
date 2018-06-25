@@ -6,6 +6,7 @@ import com.ecs.measure.GUI.Containers.FittedLayout;
 import com.ecs.measure.GUI.Objects.Button;
 import com.ecs.measure.GUI.Objects.FittedPanel;
 import com.ecs.measure.GUI.Screen;
+import com.ecs.measure.GUI.Objects.Slider;
 import net.minecraft.util.text.TextComponentTranslation;
 
 import static com.ecs.measure.Renderers.MeasureRenderer.*;
@@ -17,9 +18,11 @@ public class MeasureMenuGuiScreen extends Screen {
     private static final Color hoveredText = new Color(1, 1, 1, 0.5f);
     private static final Color pressedBackground = new Color(1, 1, 1, 0.9f);
     private static final Color pressedText = Color.BLACK;
-    
+    private static int objectWidth = 140;
+
+
     private void addButton(FittedLayout fittedLayout, String translationKey, boolean state, boolean switchMode, Runnable runnable) {
-        Button button = new Button(0, 0, 140, 19,
+        Button button = new Button(0, 0, objectWidth, 19,
             defaultBackground,
             defaultText,
             hoveredBackground,
@@ -40,7 +43,7 @@ public class MeasureMenuGuiScreen extends Screen {
             fittedPanel.color = Color.transition(Color.TRANSPARENT, new Color(0, 0, 0, 0.6f), position);
         });
         container.addChild(fittedPanel);
-        
+
 //        Button button = new Button(20, 20, 300, 20, defaultBackground, defaultText, hoveredBackground, hoveredText, pressedBackground, pressedText, "Meow");
 //        container.addChild(button);
         
@@ -70,6 +73,14 @@ public class MeasureMenuGuiScreen extends Screen {
         addButton(fittedLayout, "renderPolygon", renderPolygon, true, () -> {
             renderPolygon = !renderPolygon;
         });
+
+        Slider slider = new Slider(1, 1, objectWidth, 3, 4, 4, 0, 100, 30, Color.RED, Color.BLACK, Color.WHITE, Color.WHITE, "Gleb pidor na ", "%");
+        slider.onValueChanged = () -> {
+            float value = (float) slider.value / (float) (slider.maximumValue - slider.minimumValue);
+            slider.valueColor = new Color(value, value, value, 1);
+        };
+        slider.onValueChanged.run();
+        fittedLayout.addChild(slider);
 
 //        addButton(fittedLayout, "autoPin", MeasureRenderer.autoPinTimerTask != null, true, () -> {
 //            MeasureRenderer.toggleAutoPin();

@@ -1,12 +1,11 @@
 package com.ecs.measure.GUI.Objects;
 
-import com.ecs.measure.Measure;
 import com.ecs.measure.GUI.Animation;
-import com.ecs.measure.GUI.Graphics;
 import com.ecs.measure.GUI.Color;
+import com.ecs.measure.GUI.Graphics;
+import com.ecs.measure.GUI.Object;
+import net.minecraft.client.Minecraft;
 import org.lwjgl.input.Mouse;
-
-import static org.lwjgl.opengl.GL11.*;
 
 public class Button extends Object {
     public Color backgroundDefaultColor, textDefaultColor, backgroundHoveredColor, textHoveredColor, backgroundPressedColor, textPressedColor;
@@ -30,25 +29,26 @@ public class Button extends Object {
         
         onMouseEvent = (mouseX, mouseY) -> {
             if (hovered && Mouse.getEventButtonState() && Mouse.getEventButton() == 0) {
-                if (switchMode) {
+                if (switchMode)
                     this.state = !this.state;
-                }
-                else {
+                else
                     this.state = true;
-                }
-
-                onMousePressed.run();
+                
+                if (onMousePressed != null)
+                    onMousePressed.run();
             }
             else {
-                if (!switchMode) {
+                if (!switchMode)
                     this.state = false;
-                }
             }
 
-            updateAnimations();
+            if (state)
+                setAnimation(backgroundPressedColor, textPressedColor);    
+            else if (hovered)
+                setAnimation(backgroundHoveredColor, textHoveredColor);    
+            else
+                setAnimation(backgroundDefaultColor, textDefaultColor);    
         };
-        
-        onMousePressed = () -> {};
 
         setState(false);
     }
@@ -83,23 +83,10 @@ public class Button extends Object {
     }
 
     private void setAnimation(Color backgroundColor, Color textColor) {
-        animation = new Animation(animationDuration,
-            (position) -> {
-                backgroundCurrentColor = Color.transition(backgroundCurrentColor, backgroundColor, position);
-                textCurrentColor = Color.transition(textCurrentColor, textColor, position);
-            });
-    }
-
-    private void updateAnimations() {
-        if (state) {
-            setAnimation(backgroundPressedColor, textPressedColor);
-        }
-        else if (hovered) {
-            setAnimation(backgroundHoveredColor, textHoveredColor);
-        }
-        else {
-            setAnimation(backgroundDefaultColor, textDefaultColor);
-        }
+        animation = new Animation(animationDuration, (position) -> {
+            backgroundCurrentColor = Color.transition(backgroundCurrentColor, backgroundColor, position);
+            textCurrentColor = Color.transition(textCurrentColor, textColor, position);
+        });
     }
     
     public Button setOnMousePressed(Runnable runnable) {
@@ -108,14 +95,8 @@ public class Button extends Object {
     }
     
     @Override
-    public void draw(int mouseX, int mouseY, float partialTicks) {
+    public void draw() {
         Graphics.drawRectangle(screenX, screenY, width, height, backgroundCurrentColor);
-
-        glEnable(GL_TEXTURE_2D);
-        glPushMatrix();
-            glColor4f(textCurrentColor.r, textCurrentColor.g, textCurrentColor.b, textCurrentColor.a);
-            glTranslatef(screenX + width / 2 - Measure.minecraft.fontRenderer.getStringWidth(text) / 2, screenY + (height - 8) / 2, 0);
-            Measure.minecraft.fontRenderer.drawString(text, 0, 0, 0xFFFFFF, false);
-        glPopMatrix();
+        Graphics.drawText(screenX + width / 2 - Minecraft.getMinecraft().fontRenderer.getStringWidth(text) / 2, screenY + height / 2 - 3, textCurrentColor, text, false);
     }
 }
