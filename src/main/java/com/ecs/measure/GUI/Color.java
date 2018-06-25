@@ -1,14 +1,6 @@
 package com.ecs.measure.GUI;
 
 public class Color {
-    public static final Color
-        WHITE = new Color(1, 1, 1, 1),
-        BLACK = new Color(0, 0, 0, 1),
-        RED = new Color(1, 0, 0, 1),
-        GREEN = new Color(0, 1, 0, 1),
-        BLUE = new Color(0, 0, 1, 1),
-        TRANSPARENT = new Color(0, 0, 0, 0);
-    
     public double r, g, b, a;
 
     public Color(double r, double g, double b, double a) {
@@ -16,6 +8,13 @@ public class Color {
         this.g = g;
         this.b = b;
         this.a = a;
+    }
+
+    public Color(double r, double g, double b) {
+        this.r = r;
+        this.g = g;
+        this.b = b;
+        this.a = 1;
     }
 
     public Color(int color) {

@@ -5,11 +5,14 @@ import com.ecs.measure.GUI.Color;
 import com.ecs.measure.GUI.Containers.FittedLayout;
 import com.ecs.measure.GUI.Objects.Button;
 import com.ecs.measure.GUI.Objects.FittedPanel;
+import com.ecs.measure.GUI.Objects.Image;
 import com.ecs.measure.GUI.Screen;
 import com.ecs.measure.GUI.Objects.Slider;
 import com.ecs.measure.Measure;
 import com.ecs.measure.Renderers.MeasureRenderer;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextComponentTranslation;
+import org.lwjgl.input.Mouse;
 
 import static com.ecs.measure.Renderers.MeasureRenderer.*;
 
@@ -19,7 +22,7 @@ public class MeasureMenuGuiScreen extends Screen {
     private static final Color hoveredBackground = new Color(1, 1, 1, 0.3f);
     private static final Color hoveredText = new Color(1, 1, 1, 0.5f);
     private static final Color pressedBackground = new Color(1, 1, 1, 0.9f);
-    private static final Color pressedText = Color.BLACK;
+    private static final Color pressedText = new Color(0, 0, 0);
     private static int objectWidth = 140;
 
 
@@ -38,11 +41,13 @@ public class MeasureMenuGuiScreen extends Screen {
         button.setState(state);
         fittedLayout.addChild(button);
     }
-    
+
+    int prevX = -1, prevY;
+
     public MeasureMenuGuiScreen() {
         FittedPanel fittedPanel = new FittedPanel(0, 0, container.width, container.height, new Color(0, 0, 0, 0.6f));
         fittedPanel.animation = new Animation(150, position -> {
-            fittedPanel.color = Color.transition(Color.TRANSPARENT, new Color(0, 0, 0, 0.6f), position);
+            fittedPanel.color = Color.transition(new Color(0, 0, 0, 0), new Color(0, 0, 0, 0.6f), position);
         });
         container.addChild(fittedPanel);
 
@@ -76,20 +81,32 @@ public class MeasureMenuGuiScreen extends Screen {
             renderPolygon = !renderPolygon;
         });
 
-        Slider slider = new Slider(1, 1, objectWidth, 2, 4, 3, 0, 100, 30, Color.RED, Color.BLACK, Color.WHITE, Color.WHITE, "Gleb pidor na ", "%");
+        Slider slider = new Slider(1, 1, objectWidth, 2, 4, 3, 0, 100, 30, new Color(0xFF0000), new Color(0x0), new Color(0xFFFFFF), new Color(0xFFFFFF), "Gleb pidor na ", "%");
+        fittedLayout.addChild(slider);
         slider.onValueChanged = () -> {
-            float value = (float) slider.value / (float) (slider.maximumValue - slider.minimumValue);
-            slider.valueColor = new Color(value, value, value, 1);
+            slider.valueColor.r = (float) slider.value / (float) (slider.maximumValue - slider.minimumValue);
+            slider.valueColor.g = slider.valueColor.r;
+            slider.valueColor.b = slider.valueColor.r;
         };
         slider.onValueChanged.run();
-        fittedLayout.addChild(slider);
-
-//        addButton(fittedLayout, "autoPin", MeasureRenderer.autoPinTimerTask != null, true, () -> {
-//            MeasureRenderer.toggleAutoPin();
-//        });
-
-//        addButton(fittedLayout, "wallhackToggle", WallHackRenderer.wallhackEnabled, true, () -> {
-//            WallHackRenderer.wallhackEnabled = !WallHackRenderer.wallhackEnabled;
-//        });
+        
+        Image image = new Image(10, 10, 70, 120, new ResourceLocation(Measure.MODID, "textures/yana.png"));
+        container.addChild(image);
+        image.onMouseEvent = (mouseX, mouseY) -> {
+            if (image.hovered) {
+                if (Mouse.isButtonDown(0)) {
+                    if (prevX > -1) {
+                        image.x += mouseX - prevX;
+                        image.y += mouseY - prevY;
+                    }
+                    
+                    prevX = mouseX;
+                    prevY = mouseY;
+                }
+                else {
+                    prevX = -1;
+                }
+            }
+        };
     }
 }

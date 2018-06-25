@@ -93,7 +93,12 @@ public class Button extends Object {
         onMousePressed = runnable;
         return this;
     }
-    
+
+    @Override
+    public void update() {
+        
+    }
+
     @Override
     public void draw() {
         Graphics.drawRectangle(screenX, screenY, width, height, backgroundCurrentColor);

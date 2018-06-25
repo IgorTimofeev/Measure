@@ -13,6 +13,11 @@ public class Panel extends Object {
     }
 
     @Override
+    public void update() {
+        
+    }
+
+    @Override
     public void draw() {
         Graphics.drawRectangle(screenX, screenY, width, height, color);
     }

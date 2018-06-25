@@ -1,6 +1,6 @@
 package com.ecs.measure.GUI;
 
-public class Object extends Rectangle {
+public abstract class Object extends Rectangle {
     public int screenX, screenY;
     public boolean disabled = false, hidden = false, hovered = false;
     public Container parent = null, firstParent = null;
@@ -17,11 +17,6 @@ public class Object extends Rectangle {
         return x >= this.x && x <= this.x + width - 1 && y >= this.y && y <= this.y + height - 1;
     }
 
-    public void update() {
-        
-    }
-    
-    public void draw() {
-        
-    }
+    public abstract void update();
+    public abstract void draw();
 }

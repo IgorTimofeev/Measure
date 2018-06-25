@@ -42,6 +42,11 @@ public class Slider extends Object {
             }
         };
     }
+
+    @Override
+    public void update() {
+
+    }
     
     @Override
     public void draw() {
