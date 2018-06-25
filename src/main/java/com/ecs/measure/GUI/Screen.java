@@ -11,7 +11,7 @@ public class Screen extends GuiScreen {
     public MainContainer container;
     
     public class MainContainer extends Container {
-        public MainContainer(int x, int y, int width, int height) {
+        MainContainer(int x, int y, int width, int height) {
             super(x, y, width, height);
         }
 
@@ -29,7 +29,7 @@ public class Screen extends GuiScreen {
         this.container = new MainContainer(0, 0, Measure.minecraft.displayWidth, Measure.minecraft.displayHeight);
     }
     
-    public void handleMouse(Container container, int mouseX, int mouseY) {
+    private void handleMouse(Container container, int mouseX, int mouseY) {
         Object child;
         for (int i = container.children.size() - 1; i >= 0; i--) {
             child = container.children.get(i);

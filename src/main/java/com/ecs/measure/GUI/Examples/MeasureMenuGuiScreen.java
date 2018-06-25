@@ -10,7 +10,7 @@ import net.minecraft.util.text.TextComponentTranslation;
 
 import static com.ecs.measure.Renderers.MeasureRenderer.*;
 
-public class ButtonTest extends Screen {
+public class MeasureMenuGuiScreen extends Screen {
     private static final Color defaultBackground = new Color(1, 1, 1, 0.12f);
     private static final Color defaultText = new Color(1, 1, 1, 0.5f);
     private static final Color hoveredBackground = new Color(1, 1, 1, 0.3f);
@@ -34,7 +34,7 @@ public class ButtonTest extends Screen {
         fittedLayout.addChild(button);
     }
     
-    public ButtonTest() {
+    public MeasureMenuGuiScreen() {
         FittedPanel fittedPanel = new FittedPanel(0, 0, container.width, container.height, new Color(0, 0, 0, 0.6f));
         fittedPanel.animation = new Animation(150, position -> {
             fittedPanel.color = Color.transition(Color.TRANSPARENT, new Color(0, 0, 0, 0.6f), position);

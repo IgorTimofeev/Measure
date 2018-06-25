@@ -1,7 +1,7 @@
 package com.ecs.measure.Handlers;
 
 import com.ecs.measure.Measure;
-import com.ecs.measure.GUI.Examples.ButtonTest;
+import com.ecs.measure.GUI.Examples.MeasureMenuGuiScreen;
 import com.ecs.measure.Renderers.MeasureRenderer;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
@@ -37,7 +37,7 @@ public class KeyInputHandler {
             MeasureRenderer.addLookingAt();
         }
         else if (keyBindings.get("openMenu").isPressed()) {
-            Measure.minecraft.displayGuiScreen(new ButtonTest());
+            Measure.minecraft.displayGuiScreen(new MeasureMenuGuiScreen());
         }
     }
 }

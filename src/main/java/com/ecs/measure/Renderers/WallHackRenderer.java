@@ -42,10 +42,7 @@ public class WallHackRenderer {
     
     public static boolean wallhackEnabled = false;
     public static boolean wallhackClosestPathEnabled = true;
-    
-    private static World world;
-    private static Vec3d playerPosition;
-    
+
     private static int maxClosestEntityLinesCount = 5, closestEntityLinesCount;
     private static double textStep = 0.4d, textY;
 
@@ -74,8 +71,8 @@ public class WallHackRenderer {
         if (wallhackEnabled) {
             float partialTicks = event.getPartialTicks();
             closestEntityLinesCount = 0;
-            world = Measure.minecraft.player.getEntityWorld();
-            playerPosition = Orientation.applyPartialTicks(Measure.minecraft.player, partialTicks);
+            World world = Measure.minecraft.player.getEntityWorld();
+            Vec3d playerPosition = Orientation.applyPartialTicks(Measure.minecraft.player, partialTicks);
 
             glEnable(GL_BLEND);
             glDisable(GL_CULL_FACE);

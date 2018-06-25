@@ -4,6 +4,9 @@ public class Color {
     public static final Color
         WHITE = new Color(1, 1, 1, 1),
         BLACK = new Color(0, 0, 0, 1),
+        RED = new Color(1, 0, 0, 1),
+        GREEN = new Color(0, 1, 0, 1),
+        BLUE = new Color(0, 0, 1, 1),
         TRANSPARENT = new Color(0, 0, 0, 0);
     
     public float r, g, b, a;
