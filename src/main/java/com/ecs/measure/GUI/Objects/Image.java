@@ -7,9 +7,9 @@ import com.ecs.measure.GUI.Object;
 public class Image extends Object {
     public Texture texture;
 
-    public Image(int x, int y, int width, int height, String path) {
+    public Image(int x, int y, int width, int height, Texture texture) {
         super(x, y, width, height);
-        this.texture = new Texture(path);
+        this.texture = texture;
     }
 
     @Override

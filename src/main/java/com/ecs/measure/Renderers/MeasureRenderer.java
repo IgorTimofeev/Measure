@@ -148,7 +148,7 @@ public class MeasureRenderer {
                 
                 if (renderPolygon) {
                     glBegin(GL_POLYGON);
-                    glColor4d(PIN_POLYGON_COLOR.r, PIN_POLYGON_COLOR.g, PIN_POLYGON_COLOR.b, PIN_POLYGON_COLOR.a);
+                    glColor4f(PIN_POLYGON_COLOR.r, PIN_POLYGON_COLOR.g, PIN_POLYGON_COLOR.b, PIN_POLYGON_COLOR.a);
                     for (int i = 0; i < pins.size(); i++) {
                         Pin pin = pins.get(i);
                         glVertex3d(pin.hit.x, pin.hit.y, pin.hit.z);

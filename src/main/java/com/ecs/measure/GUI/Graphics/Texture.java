@@ -12,19 +12,35 @@ import java.nio.FloatBuffer;
 public class Texture {
     public FloatBuffer buffer;
     public int width, height;
+
+    public int getIndex(int x, int y) {
+        return y * width * 4 + x * 4;
+    }
+
+    public Color getPixel(int index) {
+        return new Color(buffer.get(index), buffer.get(index + 1), buffer.get(index + 2), buffer.get(index + 3));
+    }
+    
+    public Color getPixel(int x, int y) {
+        int index = getIndex(x, y);
+        if (index >= 0 && index <= buffer.capacity()) {
+            return getPixel(index);
+        }
+        
+        return null;
+    }
+
+    public void setPixel(int index, float r, float g, float b, float a) {
+        buffer.put(index, r);
+        buffer.put(index + 1, g);
+        buffer.put(index + 2, b);
+        buffer.put(index + 3, a);
+    }
     
     public void setPixel(int x, int y, float r, float g, float b, float a) {
-        int index = y * width * 4 + x * 4;
-        System.out.println("x = " + x + ", y = " + y + ", index = " + index);
-        
+        int index = getIndex(x, y);
         if (index >= 0 && index <= buffer.capacity()) {
-            buffer.put(index, r);
-            buffer.put(index + 1, g);
-            buffer.put(index + 2, b);
-            buffer.put(index + 3, a);
-        }
-        else {
-            System.out.println("Out of bounds: " + index);
+            setPixel(index, r, g, b, a);
         }
     }
     

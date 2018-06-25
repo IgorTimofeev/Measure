@@ -12,7 +12,7 @@ public class Renderer {
             glTranslated(x, y, 0);
             
             glBegin(GL_QUADS);
-                glColor4d(color.r, color.g, color.b, color.a);
+                glColor4f(color.r, color.g, color.b, color.a);
                 glVertex2i(0, 0);
                 glVertex2i(0, height);
                 glVertex2i(width, height);
@@ -33,7 +33,7 @@ public class Renderer {
             glTranslated(centerX, centerY, 0);
                 
             glBegin(GL_TRIANGLE_FAN);
-                glColor4d(color.r, color.g, color.b, color.a);
+                glColor4f(color.r, color.g, color.b, color.a);
                 
                 for (int i = 0; i < segments; i++) {
                     glVertex2d(x, y);
@@ -48,7 +48,7 @@ public class Renderer {
     
     public static void drawText(int x, int y, Color color, String text, boolean dropShadow) {
         glEnable(GL_TEXTURE_2D);
-        glColor4d(color.r, color.g, color.b, color.a);
+        glColor4f(color.r, color.g, color.b, color.a);
         Minecraft.getMinecraft().fontRenderer.drawString(text, x, y, 0xFFFFFF, dropShadow);
     }
     
