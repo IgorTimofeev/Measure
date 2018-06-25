@@ -1,13 +1,14 @@
 package com.ecs.measure.GUI.Examples;
 
 import com.ecs.measure.GUI.Animation;
-import com.ecs.measure.GUI.Screen;
-import com.ecs.measure.GUI.Objects.Button;
-import com.ecs.measure.GUI.Containers.FittedLayout;
-import com.ecs.measure.GUI.Objects.FittedPanel;
-import com.ecs.measure.Renderers.MeasureRenderer;
 import com.ecs.measure.GUI.Color;
+import com.ecs.measure.GUI.Containers.FittedLayout;
+import com.ecs.measure.GUI.Objects.Button;
+import com.ecs.measure.GUI.Objects.FittedPanel;
+import com.ecs.measure.GUI.Screen;
 import net.minecraft.util.text.TextComponentTranslation;
+
+import static com.ecs.measure.Renderers.MeasureRenderer.*;
 
 public class ButtonTest extends Screen {
     private static final Color defaultBackground = new Color(1, 1, 1, 0.12f);
@@ -47,27 +48,27 @@ public class ButtonTest extends Screen {
         container.addChild(fittedLayout);
 
         addButton(fittedLayout, "clearPins", false, false, () -> {
-            MeasureRenderer.pins.clear();
+            pins.clear();
         });
 
-        addButton(fittedLayout, "snapToBlocks", MeasureRenderer.snapToBlocks, true, () -> {
-            MeasureRenderer.snapToBlocks = !MeasureRenderer.snapToBlocks;
+        addButton(fittedLayout, "snapToBlocks", snapToBlocks, true, () -> {
+            snapToBlocks = !snapToBlocks;
         });
 
-        addButton(fittedLayout, "renderDistance", MeasureRenderer.renderDistance, true, () -> {
-            MeasureRenderer.renderDistance = !MeasureRenderer.renderDistance;
+        addButton(fittedLayout, "renderDistance", renderDistance, true, () -> {
+            renderDistance = !renderDistance;
         });
 
-        addButton(fittedLayout, "moveDistance", MeasureRenderer.moveDistance, true, () -> {
-            MeasureRenderer.moveDistance = !MeasureRenderer.moveDistance;
+        addButton(fittedLayout, "moveDistance", moveDistance, true, () -> {
+            moveDistance = !moveDistance;
         });
 
-        addButton(fittedLayout, "renderBlocks", MeasureRenderer.renderBlocks, true, () -> {
-            MeasureRenderer.renderBlocks = !MeasureRenderer.renderBlocks;
+        addButton(fittedLayout, "renderBlocks", renderBlocks, true, () -> {
+            renderBlocks = !renderBlocks;
         });
 
-        addButton(fittedLayout, "renderPolygon", MeasureRenderer.renderPolygon, true, () -> {
-            MeasureRenderer.renderPolygon = !MeasureRenderer.renderPolygon;
+        addButton(fittedLayout, "renderPolygon", renderPolygon, true, () -> {
+            renderPolygon = !renderPolygon;
         });
 
 //        addButton(fittedLayout, "autoPin", MeasureRenderer.autoPinTimerTask != null, true, () -> {
