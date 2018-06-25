@@ -15,7 +15,7 @@ public class MeasureMenuGuiScreen extends Screen {
     private static final Color defaultText = new Color(1, 1, 1, 0.5f);
     private static final Color hoveredBackground = new Color(1, 1, 1, 0.3f);
     private static final Color hoveredText = new Color(1, 1, 1, 0.5f);
-    private static final Color pressedBackground = Color.WHITE;
+    private static final Color pressedBackground = new Color(1, 1, 1, 0.9f);
     private static final Color pressedText = Color.BLACK;
     
     private void addButton(FittedLayout fittedLayout, String translationKey, boolean state, boolean switchMode, Runnable runnable) {

@@ -1,6 +1,6 @@
-keybinding.wallhack.category=Опции Measure
-keybinding.wallhack.addPin=Добавить маркер
-keybinding.wallhack.openMenu=Открыть меню
+keybindingCategory=Опции Measure
+addPin=Добавить маркер
+openMenu=Открыть меню
 distance=Дистанция: 
 hp=Здоровье: 
 clearPins=Очистить маркеры

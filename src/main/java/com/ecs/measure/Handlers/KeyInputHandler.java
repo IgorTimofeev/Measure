@@ -18,7 +18,7 @@ public class KeyInputHandler {
     private static HashMap<String, KeyBinding> keyBindings = new HashMap<String, KeyBinding>();
     
     private void addKeyBinding(String name, int key) {
-        keyBindings.put(name, new KeyBinding("keybinding.wallhack." + name, key, "keybinding.wallhack.category"));
+        keyBindings.put(name, new KeyBinding(name, key, "keybindingCategory"));
     }
     
     public KeyInputHandler() {
