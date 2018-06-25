@@ -58,16 +58,16 @@ public class ButtonTest extends Screen {
             MeasureRenderer.renderDistance = !MeasureRenderer.renderDistance;
         });
 
+        addButton(fittedLayout, "moveDistance", MeasureRenderer.moveDistance, true, () -> {
+            MeasureRenderer.moveDistance = !MeasureRenderer.moveDistance;
+        });
+
         addButton(fittedLayout, "renderBlocks", MeasureRenderer.renderBlocks, true, () -> {
             MeasureRenderer.renderBlocks = !MeasureRenderer.renderBlocks;
         });
 
         addButton(fittedLayout, "renderPolygon", MeasureRenderer.renderPolygon, true, () -> {
             MeasureRenderer.renderPolygon = !MeasureRenderer.renderPolygon;
-        });
-
-        addButton(fittedLayout, "moveDistance", MeasureRenderer.moveDistance, true, () -> {
-            MeasureRenderer.moveDistance = !MeasureRenderer.moveDistance;
         });
 
 //        addButton(fittedLayout, "autoPin", MeasureRenderer.autoPinTimerTask != null, true, () -> {
