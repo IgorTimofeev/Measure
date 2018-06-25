@@ -1,10 +1,10 @@
-package com.ecs.measure.GUI;
+package com.ecs.measure.GUI.Graphics;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.ResourceLocation;
 
 import static org.lwjgl.opengl.GL11.*;
 
-public class Graphics {
+public class Renderer {
     public static void drawRectangle(int x, int y, int width, int height, Color color) {
         glPushMatrix();
             glDisable(GL_TEXTURE_2D);
@@ -52,15 +52,14 @@ public class Graphics {
         Minecraft.getMinecraft().fontRenderer.drawString(text, x, y, 0xFFFFFF, dropShadow);
     }
     
-    public static void drawImage(int x, int y, int width, int height, ResourceLocation resourceLocation) {
+    public static void drawBoundTexture(int x, int y, int width, int height) {
+        glEnable(GL_BLEND);
+        glEnable(GL_TEXTURE_2D);
+        
         glPushMatrix();
-            glEnable(GL_TEXTURE_2D);
-            glDisable(GL_CULL_FACE);
             glTranslated(x, y, 0);
-            Minecraft.getMinecraft().getTextureManager().bindTexture(resourceLocation);
-            
-            glColor3f(1, 1, 1);
             glBegin(GL_QUADS);
+                glColor3f(1, 1, 1);
                 glTexCoord2f(0, 0);
                 glVertex2i(0, 0);
         
@@ -74,5 +73,22 @@ public class Graphics {
                 glVertex2i(0, height);
             glEnd();
         glPopMatrix();
+    }
+
+    public static void drawImage(int x, int y, int width, int height, Texture texture) {
+        int textureID = glGenTextures();
+        glBindTexture(GL_TEXTURE_2D, textureID);
+        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, texture.width, texture.height, 0, GL_RGBA, GL_FLOAT, texture.buffer);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+        
+        drawBoundTexture(x, y, width, height);
+        
+        glDeleteTextures(textureID);
+    }
+    
+    public static void drawImage(int x, int y, int width, int height, ResourceLocation resourceLocation) {
+        Minecraft.getMinecraft().getTextureManager().bindTexture(resourceLocation);
+        
+        drawBoundTexture(x, y, width, height);
     }
 }

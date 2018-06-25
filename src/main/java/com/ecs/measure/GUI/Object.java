@@ -1,5 +1,7 @@
 package com.ecs.measure.GUI;
 
+import com.ecs.measure.GUI.Interfaces.MouseEventHandler;
+
 public abstract class Object extends Rectangle {
     public int screenX, screenY;
     public boolean disabled = false, hidden = false, hovered = false;

@@ -1,8 +1,8 @@
 package com.ecs.measure.GUI.Objects;
 
 import com.ecs.measure.GUI.Animation;
-import com.ecs.measure.GUI.Color;
-import com.ecs.measure.GUI.Graphics;
+import com.ecs.measure.GUI.Graphics.Color;
+import com.ecs.measure.GUI.Graphics.Renderer;
 import com.ecs.measure.GUI.Object;
 import net.minecraft.client.Minecraft;
 import org.lwjgl.input.Mouse;
@@ -101,7 +101,7 @@ public class Button extends Object {
 
     @Override
     public void draw() {
-        Graphics.drawRectangle(screenX, screenY, width, height, backgroundCurrentColor);
-        Graphics.drawText(screenX + width / 2 - Minecraft.getMinecraft().fontRenderer.getStringWidth(text) / 2, screenY + height / 2 - 3, textCurrentColor, text, false);
+        Renderer.drawRectangle(screenX, screenY, width, height, backgroundCurrentColor);
+        Renderer.drawText(screenX + width / 2 - Minecraft.getMinecraft().fontRenderer.getStringWidth(text) / 2, screenY + height / 2 - 3, textCurrentColor, text, false);
     }
 }

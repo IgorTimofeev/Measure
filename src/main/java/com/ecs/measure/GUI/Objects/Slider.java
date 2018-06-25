@@ -1,7 +1,7 @@
 package com.ecs.measure.GUI.Objects;
 
-import com.ecs.measure.GUI.Color;
-import com.ecs.measure.GUI.Graphics;
+import com.ecs.measure.GUI.Graphics.Color;
+import com.ecs.measure.GUI.Graphics.Renderer;
 import com.ecs.measure.GUI.Object;
 import net.minecraft.client.Minecraft;
 import org.lwjgl.input.Mouse;
@@ -54,13 +54,13 @@ public class Slider extends Object {
         int halfTrackHeight = trackHeight / 2;
         int trackY = screenY + pipeRadius - halfTrackHeight;
         
-        Graphics.drawRectangle(screenX, trackY, pipeLeft, trackHeight, primaryColor);
-        Graphics.drawRectangle(screenX + pipeLeft, trackY, width - pipeLeft, trackHeight, secondaryColor);
-        Graphics.drawCircle(screenX + pipeLeft, trackY + halfTrackHeight, hovered ? pipeRadius + 1 : pipeRadius, 16, pipeColor);
+        Renderer.drawRectangle(screenX, trackY, pipeLeft, trackHeight, primaryColor);
+        Renderer.drawRectangle(screenX + pipeLeft, trackY, width - pipeLeft, trackHeight, secondaryColor);
+        Renderer.drawCircle(screenX + pipeLeft, trackY + halfTrackHeight, hovered ? pipeRadius + 1 : pipeRadius, 16, pipeColor);
         
         if (showValue) {
             String text = prefix + (roundValue ? (int) Math.round(value) : String.format("%.2f:", value)) + postfix;
-            Graphics.drawText(
+            Renderer.drawText(
                 screenX + width / 2 - Minecraft.getMinecraft().fontRenderer.getStringWidth(text) / 2,
                 screenY + pipeRadius * 2 + valueOffset,
                 valueColor,

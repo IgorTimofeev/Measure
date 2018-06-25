@@ -1,13 +1,10 @@
 package com.ecs.measure.GUI.Examples;
 
 import com.ecs.measure.GUI.Animation;
-import com.ecs.measure.GUI.Color;
+import com.ecs.measure.GUI.Graphics.Color;
 import com.ecs.measure.GUI.Containers.FittedLayout;
-import com.ecs.measure.GUI.Objects.Button;
-import com.ecs.measure.GUI.Objects.FittedPanel;
-import com.ecs.measure.GUI.Objects.Image;
+import com.ecs.measure.GUI.Objects.*;
 import com.ecs.measure.GUI.Screen;
-import com.ecs.measure.GUI.Objects.Slider;
 import com.ecs.measure.Measure;
 import com.ecs.measure.Renderers.MeasureRenderer;
 import net.minecraft.util.ResourceLocation;
@@ -90,16 +87,23 @@ public class MeasureMenuGuiScreen extends Screen {
         };
         slider.onValueChanged.run();
         
-        Image image = new Image(10, 10, 70, 120, new ResourceLocation(Measure.MODID, "textures/yana.png"));
+        Image image = new Image(10, 10, 60, 90, "/Users/igor/Desktop/2.png");
         container.addChild(image);
         image.onMouseEvent = (mouseX, mouseY) -> {
             if (image.hovered) {
                 if (Mouse.isButtonDown(0)) {
+                    image.texture.setPixel(
+                        (int) ((mouseX - image.screenX) / (float) image.width * image.texture.width),
+                        (int) ((mouseY - image.screenY) / (float) image.height * image.texture.height),
+                        1, 0, 0, 1
+                    );
+                }
+                else if (Mouse.isButtonDown(1)) {
                     if (prevX > -1) {
                         image.x += mouseX - prevX;
                         image.y += mouseY - prevY;
                     }
-                    
+
                     prevX = mouseX;
                     prevY = mouseY;
                 }

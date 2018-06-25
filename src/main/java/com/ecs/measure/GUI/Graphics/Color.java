@@ -1,4 +1,4 @@
-package com.ecs.measure.GUI;
+package com.ecs.measure.GUI.Graphics;
 
 public class Color {
     public double r, g, b, a;
@@ -18,10 +18,10 @@ public class Color {
     }
 
     public Color(int color) {
-        this.a = color > 0xFFFFFF ? (double) (color >> 24 & 0xFF) / 255 : 1;
-        this.r = (double) (color >> 16 & 0xFF) / 255;
-        this.g = (double) (color >> 8 & 0xFF) / 255;
-        this.b = (double) (color & 0xFF) / 255;
+        this.a = color > 0xFFFFFF ? (color >> 24 & 0xFF) / 255.0d : 1;
+        this.r = (color >> 16 & 0xFF) / 255.0d;
+        this.g = (color >> 8 & 0xFF) / 255.0d;
+        this.b = (color & 0xFF) / 255.0d;
     }
 
     public static int toARGB(Color color) {

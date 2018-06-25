@@ -2,7 +2,7 @@ package com.ecs.measure.Renderers;
 
 import com.ecs.measure.Measure;
 import com.ecs.measure.Handlers.SoundHandler;
-import com.ecs.measure.GUI.Color;
+import com.ecs.measure.GUI.Graphics.Color;
 import com.ecs.measure.Utils.Orientation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;

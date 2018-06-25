@@ -1,7 +1,7 @@
 package com.ecs.measure.Renderers;
 
 import com.ecs.measure.Measure;
-import com.ecs.measure.GUI.Color;
+import com.ecs.measure.GUI.Graphics.Color;
 import com.ecs.measure.Utils.Orientation;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityCreature;

@@ -1,5 +1,5 @@
 package com.ecs.measure.GUI.Objects;
-import com.ecs.measure.GUI.Color;
+import com.ecs.measure.GUI.Graphics.Color;
 
 public class FittedPanel extends Panel {
     public FittedPanel(int x, int y, int width, int height, Color color) {
