@@ -27,17 +27,25 @@ public class Screen extends GuiScreen {
         this.container = new MainContainer(0, 0, Measure.minecraft.displayWidth, Measure.minecraft.displayHeight);
     }
     
-    private void handleMouse(Container container, int mouseX, int mouseY) {
+    private void handleMouse(Container container, int mouseX, int mouseY, boolean objectFound) {
         Object child;
+        
         for (int i = container.children.size() - 1; i >= 0; i--) {
             child = container.children.get(i);
             
             if (child instanceof Container) {
-                handleMouse((Container) child, mouseX, mouseY);
+                handleMouse((Container) child, mouseX, mouseY, objectFound);
             }
             else {
                 if (!child.hidden && !child.disabled) {
-                    child.hovered = child.isPointInside(mouseX, mouseY);
+                    if (objectFound) {
+                        child.hovered = false;
+                    }
+                    else {
+                        child.hovered = child.isPointInside(mouseX, mouseY);
+                        if (child.hovered)
+                            objectFound = true;
+                    }
                     
                     if (child.onMouseEvent != null)
                         child.onMouseEvent.run(mouseX, mouseY);
@@ -60,7 +68,8 @@ public class Screen extends GuiScreen {
         handleMouse(
             container,
             Mouse.getEventX() / scaleFactor,
-            (Measure.minecraft.displayHeight - Mouse.getEventY() - 3) / scaleFactor
+            (Measure.minecraft.displayHeight - Mouse.getEventY() - 3) / scaleFactor,
+            false
         );
     }
 
